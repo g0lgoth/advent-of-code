@@ -1,0 +1,1 @@
+"C:\Users\Gogo\AppData\Local\Programs\Python\Python36-32\Lib\idlelib\idle.py" "$(FULL_CURRENT_PATH)"
