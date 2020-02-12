@@ -1,17 +1,8 @@
-##  VARIABLES
-initial_list = []
-list_modify = []
-file = "test.txt"
-initial_index = 0
-cursor = 0
-
 ##  FUNCTIONS
 def looking_for_opcode(list, index):
 	if list[index] == 1:
-		print(f"List index:\n{index}\n")
 		return index, 0
 	elif list[index] == 2:
-		print(f"List:\n{list[index]}\n")
 		return index, 1
 	else:
 		index += 1
@@ -24,9 +15,6 @@ def value_collecter(list, index):
 	index_number1 = list[index+1]
 	index_number2 = list[index+2]
 	index_number3 = list[index+3]
-	print(f"value collecter:\n{index_number1}")
-	print(f"value collecter:\n{index_number2}")
-	print(f"value collecter:\n{index_number3}")
 	value1 = list[index_number1]
 	value2 = list[index_number2]
 	value3 = list[index_number3]
@@ -41,39 +29,42 @@ def multiplication(value1, value2):
 	return new_value
 
 def replace_index(list, value, index):
-	print(f"new value is: {list[index]} | {index} | {list}")
 	list[index] = value
-	return list[index]
+	return list
 
 ##  MAIN PROGRAM
+initial_list = []
+file = "day2.txt"
+# file = "test.txt"
+# file = "test1.txt"
+# file = "test2.txt"
+# file = "test3.txt"
+# file = "test4.txt"
+cursor = 0
 initial_list = open(file,"r")
 initial_list = initial_list.read()
 initial_list = initial_list.split(",")
 initial_list = [int(initial_list[i]) for i in range (len(initial_list))]
-list_modify = initial_list
-print(f"initial_list:\n{initial_list}\n")
-print(f"list_modify:\n{list_modify}\n")
-print(f"List cursor 0:\n{initial_list[0]}\n")
-
+initial_list = replace_index(initial_list, 12, 1)
+initial_list = replace_index(initial_list, 2, 2)
+# print(f"\n-- FIRST LIST --\ninitial_list: {initial_list}\n")
 while initial_list[cursor] != 99:
-	opcode_index, opcode_item = looking_for_opcode(list_modify, initial_index)
-	print(f"opcode_index {opcode_index} | opcode_item {opcode_item}")
+	opcode_index, opcode_item = looking_for_opcode(initial_list, cursor)
 	if opcode_item == 0 :
-		new_opcode_index = opcode_increment(opcode_index)
-		index1, index2, index_destination = value_collecter(list_modify, opcode_index)
-		print(f"index1 {index1} | index2 {index2} | index_destination {index_destination}")
+		cursor = opcode_increment(opcode_index)
+		index1, index2, index_destination = value_collecter(initial_list, opcode_index)
 		calcul_value = addition(index1, index2)
-		print(f"calcul_value {calcul_value}\n")
-		list_modify = replace_index(list_modify, calcul_value, index_destination)
+		initial_list = replace_index(initial_list, calcul_value, index_destination)
 	else :
-		new_opcode_index = opcode_increment(opcode_index)
-		index1, index2, index_destination = value_collecter(list_modify, opcode_index)
+		cursor = opcode_increment(opcode_index)
+		index1, index2, index_destination = value_collecter(initial_list, opcode_index)
 		calcul_value = multiplication(index1, index2)
-		list_modify = replace_index(list_modify, calcul_value, index_destination)
-	cursor = new_opcode_index
-	initial_list = list_modify
-	print(f"list_modify {list_modify}\n")
-	print(f"initial_list {initial_list}\n")
-	
-	
-		
+		initial_list = replace_index(initial_list, calcul_value, index_destination)
+# new_list = list(initial_list)
+# new_list = str(new_list)
+# print(f"New list is:{new_list}")
+# new_list = new_list.replace(" ","")
+# new_list = new_list.replace("[","")
+# new_list = new_list.replace("]","")
+# print(f"New list is:{new_list}")
+print(f"-- The final OPCODE --\n{initial_list}\n\nThe result is:\n{initial_list[0]}")
