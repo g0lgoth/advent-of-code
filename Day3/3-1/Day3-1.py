@@ -1,11 +1,7 @@
 ##  FUNCTIONS
-def looking_for_opcode(list, index):
-	if list[index] == 1:
-		return index, 0
-	elif list[index] == 2:
-		return index, 1
-	else:
-		index += 1
+def mov_right(list, index):
+
+
 
 def opcode_increment(index):
 	starting_index = index+4
@@ -33,8 +29,8 @@ def replace_index(list, value, index):
 	return list
 
 ##  MAIN PROGRAM
-initial_list = []
-file = "day2.txt"
+initial_cursor = 
+# file = "day2.txt"
 # file = "test.txt"
 # file = "test1.txt"
 # file = "test2.txt"
