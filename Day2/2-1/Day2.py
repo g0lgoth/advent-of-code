@@ -45,8 +45,10 @@ initial_list = open(file,"r")
 initial_list = initial_list.read()
 initial_list = initial_list.split(",")
 initial_list = [int(initial_list[i]) for i in range (len(initial_list))]
-initial_list = replace_index(initial_list, 12, 1)
-initial_list = replace_index(initial_list, 2, 2)
+# initial_list = replace_index(initial_list, 12, 1)
+# initial_list = replace_index(initial_list, 2, 2)
+initial_list = replace_index(initial_list, 1, 1)
+initial_list = replace_index(initial_list, 1, 2)
 # print(f"\n-- FIRST LIST --\ninitial_list: {initial_list}\n")
 while initial_list[cursor] != 99:
 	opcode_index, opcode_item = looking_for_opcode(initial_list, cursor)
