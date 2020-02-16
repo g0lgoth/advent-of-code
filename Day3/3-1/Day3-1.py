@@ -1,68 +1,81 @@
 ##  FUNCTIONS
-def mov_right(list, index):
+def direction(list, file_cursor, map, map_table, map_table_cursor):
+	if list[file_cursor][0] == "U" :
+		move_up(list, file_cursor, map, map_table, map_table_cursor)
+	elif list[file_cursor][0] == "D" :
+		move_down(list, file_cursor, map, map_table, map_table_cursor)
+	elif list[file_cursor][0] == "L" :
+		move_left(list, file_cursor, map, map_table, map_table_cursor)
+	else :
+		move_right(list, file_cursor, map, map_table, map_table_cursor)
 
+def move_up(list, file_cursor, map, map_table, map_table_cursor):
+	i = 1
+	movement = int(list[file_cursor][1:])
+	for i in range (movement):
+		print(f"{type(map)}")
+		print(f"{map[0]} {map[1]}")
+		map = map[1]+i
+		print(f"{map[0]} {map[1]}")
+		print(f"map {map}")
+		print(f"{type(map)}")
+		map_table = map_table.append(map)
+		map_table_cursor += 1
+	return map, map_table_cursor
 
+# def move_down(list, file_cursor, map, map_table, map_table_cursor):
+	# i = 1
+	# movement = int(list[file_cursor][1:])
+	# for i in range (movement):
+		# map = map[1]-i
+		# map_table_cursor += 1
+		# map_table = open("map_table.txt","w+")
+		# map_table = map_table[map_table_cursor].write(map)
+		# map_table.close()
+	# return map, map_table_cursor
 
-def opcode_increment(index):
-	starting_index = index+4
-	return starting_index
+# def move_right(list, file_cursor, map, map_table, map_table_cursor):
+	# i = 1
+	# movement = int(list[file_cursor][1:])
+	# for i in range (movement):
+		# map = map[0]+i
+		# map_table_cursor += 1
+		# map_table = open("map_table.txt","w+")
+		# map_table = map_table[map_table_cursor].write(map)
+		# map_table.close()
+	# return map, map_table_cursor
 
-def value_collecter(list, index):
-	index_number1 = list[index+1]
-	index_number2 = list[index+2]
-	index_number3 = list[index+3]
-	value1 = list[index_number1]
-	value2 = list[index_number2]
-	value3 = list[index_number3]
-	return value1, value2, index_number3
-
-def addition(value1, value2):
-	new_value = value1 + value2
-	return new_value
-	
-def multiplication(value1, value2):
-	new_value = value1 * value2
-	return new_value
-
-def replace_index(list, value, index):
-	list[index] = value
-	return list
+# def move_left(list, file_cursor, map, map_table, map_table_cursor):
+	# i = 1
+	# movement = int(list[file_cursor][1:])
+	# for i in range (movement):
+		# map = map[0]-i
+		# map_table_cursor += 1
+		# map_table = open("map_table.txt","w+")
+		# map_table = map_table[map_table_cursor].write(map)
+		# map_table.close()
+	# return map, map_table_cursor
 
 ##  MAIN PROGRAM
-initial_cursor = 
-# file = "day2.txt"
+# file = "day3.txt"
 # file = "test.txt"
+file = "invention.txt"
 # file = "test1.txt"
 # file = "test2.txt"
 # file = "test3.txt"
 # file = "test4.txt"
-cursor = 0
+map = [0,0] # this is my plan. I will add movement on him
+file_cursor = 0 # it is where I am on my list. I have to cover all items on my list
+map_table_cursor = 0
+map_table = list()
+print(f"map_table: {map_table}")
 initial_list = open(file,"r")
 initial_list = initial_list.read()
 initial_list = initial_list.split(",")
-initial_list = [int(initial_list[i]) for i in range (len(initial_list))]
-initial_list = replace_index(initial_list, 12, 1)
-initial_list = replace_index(initial_list, 2, 2)
-# initial_list = replace_index(initial_list, 1, 1)
-# initial_list = replace_index(initial_list, 1, 2)
-# print(f"\n-- FIRST LIST --\ninitial_list: {initial_list}\n")
-while initial_list[cursor] != 99:
-	opcode_index, opcode_item = looking_for_opcode(initial_list, cursor)
-	if opcode_item == 0 :
-		cursor = opcode_increment(opcode_index)
-		index1, index2, index_destination = value_collecter(initial_list, opcode_index)
-		calcul_value = addition(index1, index2)
-		initial_list = replace_index(initial_list, calcul_value, index_destination)
-	else :
-		cursor = opcode_increment(opcode_index)
-		index1, index2, index_destination = value_collecter(initial_list, opcode_index)
-		calcul_value = multiplication(index1, index2)
-		initial_list = replace_index(initial_list, calcul_value, index_destination)
-# new_list = list(initial_list)
-# new_list = str(new_list)
-# print(f"New list is:{new_list}")
-# new_list = new_list.replace(" ","")
-# new_list = new_list.replace("[","")
-# new_list = new_list.replace("]","")
-# print(f"New list is:{new_list}")
-print(f"-- The final OPCODE --\n{initial_list}\n\nThe result is:\n{initial_list[0]}")
+initial_list = [initial_list[i] for i in range (len(initial_list))]
+print(f"-- FIRST LIST --\ninitial_list: {initial_list}")
+print(f"initial_list[0][0]: {initial_list[0][0]}")
+print(f"initial_list[0][1:]: {initial_list[0][1:]}")
+for file_cursor in range (len(initial_list)):
+	map, map_table_cursor = direction(initial_list, file_cursor, map, map_table, map_table_cursor)
+	printf(f"map: {map}")
