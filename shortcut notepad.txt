@@ -1,6 +1,0 @@
-PC portable
-"C:\Users\Gogo\AppData\Local\Programs\Python\Python36-32\Lib\idlelib\idle.py" "$(FULL_CURRENT_PATH)"
-
-PC bureau
-"C:\Programmes Gautier\Python\Python38-64\Lib\idlelib\idle.pyw" "$(FULL_CURRENT_PATH)"
-"C:\Programmes Gautier\Python\Python37-32\Lib\idlelib\idle.pyw" "$(FULL_CURRENT_PATH)"

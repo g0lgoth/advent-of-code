@@ -1,2 +1,0 @@
-leave vim ":" and write "wq". Push "Enter" to validate. We arrive in Vim when we don't add a message for a commit.
-git commit -m "whatever you want"" is a rule to follow!!!!
